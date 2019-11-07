@@ -13,7 +13,7 @@ This document should link to all work happening at the sprint. Links to PR's and
 
 ## Extensions
 - [WIP Aerial Extension](https://github.com/radiantearth/stac-spec/pull/639)
-- [Version Extension](https://github.com/radiantearth/stac-spec/pull/635): Provides endpoints and semantics for keeping and viewing previous vesions of Collections and Items
+- [DateTime Range Extension](https://github.com/radiantearth/stac-spec/pull/638)
 
 ## Implementations
 - pygeoapi STAC support
@@ -25,20 +25,21 @@ This document should link to all work happening at the sprint. Links to PR's and
   - allowing `properties` to be added to a collection: https://github.com/geopython/pygeoapi/issues/294
   - more sophisticated postgres connections: https://github.com/geopython/pygeoapi/pull/283
 
+* [Aligned STAC-specific endpoints more with OAF](https://github.com/radiantearth/stac-spec/pull/632) - also mentioned in a related [OAF issue](https://github.com/opengeospatial/ogcapi-features/issues/154).
 * [Franklin](https://github.com/azavea/franklin) work ongoing around filling in OFeat / STAC endpoints and an importer. Endpoint progress is visible in the README, open work is visible in the [PRs](https://github.com/azavea/franklin/pulls)
-
+* [Converted search metadata to context object](https://github.com/radiantearth/stac-spec/pull/633) - consolidated search metadata into a context object that the root level of the FeatureCollection. Slimmed down property names.
 * Completed some initial work on Python client for Maxar STAC catalog API
 * Begun creating a SpaceNet 2 static STAC catalog with label extension integrated
 - Validation Group
-  - Created validation Circle CI script (pending PR)
+  - Created validation Circle CI script (pending PR) 
   - PySTAC implementation to identify object type, verion and extensions from JSON, to be used in CircleCI script (pending PR)
-- Training Data
-  - [OSM Generated Training Data](http://demo-mlhub-earth.s3-website-us-west-2.amazonaws.com)
-  - [Landcover Classification / Building Footprints / African Crops](http://browser.radiant.earth)
+  - Stac-Validator will import and use PySTAC to identify object type, version, and extensions and will use this information to infer paths to schemas on [cdn.staclint.com](cdn.staclint.com). CDN contains schemas for all versions, extensions.
+  - Extension schema filenames will be adjusted to consistently infer path to schema during validation `extensions/extension-name/json-schema/extension-name.json`, for example `extensions/eo/json-schema/eo.json`. [Issue 624](https://github.com/radiantearth/stac-spec/issues/624)
+  - STAC version and extensions defined on item_collection in support of PySTAC implementation. [PR 640](https://github.com/radiantearth/stac-spec/pull/640)
+  - Stac-validator will have an exit on failure mode for CICD implementations.
+* KoopJS [provider](https://github.com/koopjs/provider-ogcapi-features) and [output](https://github.com/koopjs/output-ogcapi-features) work ongoing around finishing up the data APIs in the core spec.
+
   
-## Core
-* [Aligned STAC-specific endpoints more with OAF](https://github.com/radiantearth/stac-spec/pull/632) - also mentioned in a related [OAF issue](https://github.com/opengeospatial/ogcapi-features/issues/154).
-* [Converted search metadata to context object](https://github.com/radiantearth/stac-spec/pull/633) - consolidated search metadata into a context object that the root level of the FeatureCollection. Slimmed down property names.
 
 ## Filter (Common Query Language)
 
